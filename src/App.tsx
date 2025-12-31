@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Calendar as CalendarIcon, StickyNote as StickyNoteIcon, Image } from 'lucide-react';
-import Calendar from './components/Calendar';
+import Dashboard from './components/Dashboard';
 import StickyNotes from './components/StickyNotes';
 import PhotoGallery from './components/PhotoGallery';
 import type { CalendarEvent, StickyNote, Photo } from './types';
@@ -105,11 +105,16 @@ function App() {
 
       <main className="app-main">
         {activeTab === 'calendar' && (
-          <Calendar
+          <Dashboard
             events={events}
+            notes={notes}
+            photos={photos}
             onAddEvent={handleAddEvent}
             onUpdateEvent={handleUpdateEvent}
             onDeleteEvent={handleDeleteEvent}
+            onAddNote={handleAddNote}
+            onUpdateNote={handleUpdateNote}
+            onDeleteNote={handleDeleteNote}
           />
         )}
         {activeTab === 'notes' && (
