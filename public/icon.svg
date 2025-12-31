@@ -1,0 +1,28 @@
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="100" fill="url(#grad)"/>
+
+  <!-- Calendar icon -->
+  <rect x="128" y="160" width="256" height="224" rx="16" fill="white"/>
+  <rect x="128" y="160" width="256" height="64" rx="16" fill="rgba(255,255,255,0.3)"/>
+
+  <!-- Calendar grid -->
+  <line x1="170" y1="256" x2="170" y2="352" stroke="url(#grad)" stroke-width="2"/>
+  <line x1="213" y1="256" x2="213" y2="352" stroke="url(#grad)" stroke-width="2"/>
+  <line x1="256" y1="256" x2="256" y2="352" stroke="url(#grad)" stroke-width="2"/>
+  <line x1="299" y1="256" x2="299" y2="352" stroke="url(#grad)" stroke-width="2"/>
+  <line x1="342" y1="256" x2="342" y2="352" stroke="url(#grad)" stroke-width="2"/>
+
+  <line x1="128" y1="272" x2="384" y2="272" stroke="url(#grad)" stroke-width="2"/>
+  <line x1="128" y1="304" x2="384" y2="304" stroke="url(#grad)" stroke-width="2"/>
+  <line x1="128" y1="336" x2="384" y2="336" stroke="url(#grad)" stroke-width="2"/>
+
+  <!-- Date number -->
+  <text x="256" y="330" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#grad)" text-anchor="middle">15</text>
+</svg>
