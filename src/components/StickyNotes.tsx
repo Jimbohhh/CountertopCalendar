@@ -25,17 +25,23 @@ const StickyNotes: React.FC<StickyNotesProps> = ({
   ];
 
   const handleAddNote = () => {
-    // Get the notes board dimensions for better positioning
-    const maxWidth = Math.max(300, window.innerWidth - 320);
-    const maxHeight = Math.max(300, window.innerHeight - 350);
+    // Calculate staggered position based on number of existing notes
+    const noteIndex = notes.length;
+    const isMobile = window.innerWidth < 768;
+
+    // For mobile, use simpler positioning that ensures visibility
+    const baseX = isMobile ? 20 : 100;
+    const baseY = isMobile ? 20 : 100;
+    const offsetX = (noteIndex * 30) % (isMobile ? 100 : 300);
+    const offsetY = (noteIndex * 40) % (isMobile ? 150 : 400);
 
     const newNote: StickyNote = {
       id: Date.now().toString(),
       content: '',
       color: noteColors[Math.floor(Math.random() * noteColors.length)],
       position: {
-        x: Math.min(Math.random() * (maxWidth - 250), maxWidth - 250),
-        y: Math.min(Math.random() * (maxHeight - 250) + 50, maxHeight - 200),
+        x: baseX + offsetX,
+        y: baseY + offsetY,
       },
       createdAt: new Date(),
     };
@@ -53,6 +59,12 @@ const StickyNotes: React.FC<StickyNotesProps> = ({
       </div>
 
       <div className="notes-board">
+        {notes.length === 0 && (
+          <div className="notes-empty-state">
+            <p>No sticky notes yet</p>
+            <p>Click "New Note" above to create your first note!</p>
+          </div>
+        )}
         {notes.map((note) => (
           <StickyNoteItem
             key={note.id}

@@ -754,6 +754,22 @@
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
 }
 
+.notes-empty-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #6b7280;
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  padding: 2rem;
+}
+
+.notes-empty-state p {
+  margin: 0.5rem 0;
+}
+
 .sticky-note {
   position: absolute;
   width: 250px;
@@ -1133,13 +1149,18 @@
   }
 
   .notes-board {
-    min-height: 500px;
+    min-height: 800px;
     -webkit-overflow-scrolling: touch;
   }
 
   .sticky-notes-container {
     height: auto;
-    min-height: 70vh;
+    min-height: 80vh;
+  }
+
+  .sticky-note {
+    width: 200px;
+    min-height: 200px;
   }
 }
 
