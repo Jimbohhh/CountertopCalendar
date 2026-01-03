@@ -25,13 +25,17 @@ const StickyNotes: React.FC<StickyNotesProps> = ({
   ];
 
   const handleAddNote = () => {
+    // Get the notes board dimensions for better positioning
+    const maxWidth = Math.max(300, window.innerWidth - 320);
+    const maxHeight = Math.max(300, window.innerHeight - 350);
+
     const newNote: StickyNote = {
       id: Date.now().toString(),
       content: '',
       color: noteColors[Math.floor(Math.random() * noteColors.length)],
       position: {
-        x: Math.random() * (window.innerWidth - 300),
-        y: Math.random() * (window.innerHeight - 300) + 100,
+        x: Math.min(Math.random() * (maxWidth - 250), maxWidth - 250),
+        y: Math.min(Math.random() * (maxHeight - 250) + 50, maxHeight - 200),
       },
       createdAt: new Date(),
     };

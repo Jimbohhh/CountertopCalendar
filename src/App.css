@@ -1122,6 +1122,25 @@
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 0.75rem;
   }
+
+  .day-view {
+    overflow: visible;
+  }
+
+  .day-schedule {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .notes-board {
+    min-height: 500px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sticky-notes-container {
+    height: auto;
+    min-height: 70vh;
+  }
 }
 
 /* Dashboard Layout */
