@@ -18,6 +18,13 @@
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .app {
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
 .app-header {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -76,6 +83,13 @@
   flex: 1;
   overflow: hidden;
   padding: 1.5rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .app-main {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* Calendar Styles */
@@ -745,21 +759,41 @@
   width: 250px;
   min-height: 250px;
   padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.05);
   cursor: move;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, transform 0.2s;
   touch-action: none;
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      rgba(0, 0, 0, 0.03) 31px,
+      rgba(0, 0, 0, 0.03) 32px
+    );
+}
+
+.sticky-note:nth-child(odd) {
+  transform: rotate(0.5deg);
+}
+
+.sticky-note:nth-child(even) {
+  transform: rotate(-0.5deg);
 }
 
 .sticky-note:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  transform: rotate(0deg) scale(1.02);
 }
 
 .sticky-note.dragging {
   cursor: grabbing;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.05);
   z-index: 100;
+  transform: rotate(0deg);
 }
 
 .note-header {
@@ -799,14 +833,20 @@
   border: none;
   background: transparent;
   resize: none;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-family: 'Caveat', cursive;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.6;
   color: #111827;
 }
 
 .note-content:focus {
   outline: none;
+}
+
+.note-content::placeholder {
+  font-family: 'Caveat', cursive;
+  color: rgba(17, 24, 39, 0.5);
 }
 
 /* Photo Gallery */
@@ -1089,6 +1129,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .dashboard-controls {
@@ -1128,6 +1169,7 @@
   display: flex;
   gap: 1rem;
   overflow: hidden;
+  min-height: 0;
 }
 
 .dashboard-layout.with-sidebar {
@@ -1140,6 +1182,7 @@
   flex-direction: column;
   gap: 1rem;
   overflow: hidden;
+  min-height: 0;
 }
 
 .dashboard-photos {
@@ -1318,13 +1361,22 @@
 
 .sidebar-note {
   padding: 0.75rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.03);
   transition: all 0.2s;
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 23px,
+      rgba(0, 0, 0, 0.02) 23px,
+      rgba(0, 0, 0, 0.02) 24px
+    );
 }
 
 .sidebar-note:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.03);
 }
 
 .sidebar-note-view {
@@ -1336,7 +1388,9 @@
   flex: 1;
   word-wrap: break-word;
   color: #111827;
-  font-size: 0.875rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.125rem;
+  font-weight: 500;
   line-height: 1.5;
   max-height: 80px;
   overflow-y: auto;
@@ -1382,15 +1436,22 @@
   padding: 0.5rem;
   border: 1px solid #d1d5db;
   border-radius: 4px;
-  font-size: 0.875rem;
+  font-family: 'Caveat', cursive;
+  font-size: 1.125rem;
+  font-weight: 500;
   resize: vertical;
-  font-family: inherit;
   background: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
 }
 
 .sidebar-note-textarea:focus {
   outline: none;
   border-color: #667eea;
+}
+
+.sidebar-note-textarea::placeholder {
+  font-family: 'Caveat', cursive;
+  color: rgba(17, 24, 39, 0.5);
 }
 
 .sidebar-note-actions {
@@ -1441,8 +1502,23 @@
 }
 
 @media (max-width: 768px) {
+  .dashboard {
+    height: auto;
+    min-height: 0;
+  }
+
+  .dashboard-layout {
+    flex-direction: column;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .dashboard-layout.with-sidebar {
     flex-direction: column;
+  }
+
+  .dashboard-main {
+    overflow: visible;
   }
 
   .dashboard-sidebar {
@@ -1456,5 +1532,9 @@
 
   .dashboard-controls {
     flex-wrap: wrap;
+  }
+
+  .dashboard-calendar {
+    overflow: visible;
   }
 }
